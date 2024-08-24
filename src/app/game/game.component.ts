@@ -22,7 +22,9 @@ export class GameComponent implements OnInit {
   operator: string = '+';
   correctAttempts = 0;
   incorrectAttempts = 0;
-  isSubmitted = false;
+  positiveFeedbackColor: any = '';
+  negativeFeedbackColor: any = '';
+  isLoading = false;
 
   constructor(private gameService: GameService) {}
 
@@ -43,12 +45,22 @@ export class GameComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.isSubmitted = true;
-
     if (this.gameForm.invalid) {
-      return; // If form is invalid, don't proceed
+      return;
     }
+    this.isLoading = true;
 
+    setTimeout(() => {
+      this.updateGame();
+    }, 1000);
+  }
+
+  // Form validation (Not using)
+  isInvalidAnswer(): boolean {
+    return this.gameForm.get('userAnswer')!.invalid;
+  }
+
+  updateGame = () => {
     const userAnswerValue = Number(this.gameForm.get('userAnswer')!.value);
     const correctAnswer = this.gameService.calculateCorrectAnswer(
       this.firstNumber,
@@ -56,13 +68,20 @@ export class GameComponent implements OnInit {
       this.operator
     );
     const isCorrect = userAnswerValue === correctAnswer;
+    if (isCorrect) {
+      this.positiveFeedbackColor = 'green';
+    } else {
+      this.negativeFeedbackColor = 'red';
+    }
     this.gameService.updateScore(isCorrect);
     this.correctAttempts = this.gameService.getScore().correctAttempts;
     this.incorrectAttempts = this.gameService.getScore().incorrectAttempts;
     this.generateNewNumbers();
-  }
+    this.isLoading = false;
 
-  isInvalidAnswer(): boolean {
-    return this.isSubmitted && this.gameForm.get('userAnswer')!.invalid;
-  }
+    setTimeout(() => {
+      this.positiveFeedbackColor = '';
+      this.negativeFeedbackColor = '';
+    }, 500);
+  };
 }

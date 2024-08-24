@@ -22,19 +22,31 @@
       </div>
       <div class="row">
         <div class="column sixteen wide">
-          <button class="fluid ui primary button" [disabled]="gameForm.invalid">
+          <button
+            sui-button
+            [suiLoading]="isLoading"
+            suiEmphasis="primary"
+            [suiFluid]="true"
+            [disabled]="gameForm.invalid"
+          >
             Submit
           </button>
         </div>
       </div>
-      <div class="column sixteen wide result">
-        <div class="row">
-          <div sui-message class="column">Cancel</div>
-          <div sui-message class="column">Save</div>
+    </div>
+    <div id="result">
+      <div>
+        <div sui-message [suiColour]="positiveFeedbackColor">
+          <div sui-message-content>
+            <div sui-header>Correct Attempts</div>
+            <p>{{ correctAttempts }}</p>
+          </div>
         </div>
-        <div class="row">
-          <div sui-message class="column">{{ correctAttempts }}</div>
-          <div sui-message class="column">{{ incorrectAttempts }}</div>
+        <div sui-message [suiColour]="negativeFeedbackColor">
+          <div sui-message-content>
+            <div sui-header>Incorrect Attempts</div>
+            <p>{{ incorrectAttempts }}</p>
+          </div>
         </div>
       </div>
     </div>

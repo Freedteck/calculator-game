@@ -36,9 +36,21 @@ input {
   font-weight: 600;
   font-size: larger;
 }
-.result {
-  gap: 0;
-}
 #error {
   font-size: 12px;
+}
+#sign {
+  align-items: center;
+}
+#result {
+  margin-top: 20px;
+}
+#result > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+#result > div > div {
+  margin: 0;
 }
