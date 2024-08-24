@@ -4,44 +4,34 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class GameService {
-  correctAttempts = 0;
-  incorrectAttempts = 0;
+  private correctAttempts = 0;
+  private incorrectAttempts = 0;
 
   generateRandomNumber(max = 50): number {
     return Math.floor(Math.random() * (max + 1));
   }
 
-  checkAnswer(
-    num1: number,
-    num2: number,
-    userAnswer: number,
-    operator: string
-  ): boolean {
-    let correctAnswer: number;
+  calculateCorrectAnswer(num1: number, num2: number, operator: string): number {
     switch (operator) {
       case '+':
-        correctAnswer = num1 + num2;
-        break;
+        return num1 + num2;
       case '-':
-        correctAnswer = num1 - num2;
-        break;
+        return num1 - num2;
       case '*':
-        correctAnswer = num1 * num2;
-        break;
+        return num1 * num2;
       case '/':
-        correctAnswer = num1 / num2;
-        break;
+        return num1 / num2;
       default:
-        correctAnswer = num1 + num2;
+        return num1 + num2;
     }
+  }
 
-    const isCorrect = userAnswer === correctAnswer;
+  updateScore(isCorrect: boolean): void {
     if (isCorrect) {
       this.correctAttempts++;
     } else {
       this.incorrectAttempts++;
     }
-    return isCorrect;
   }
 
   getScore() {

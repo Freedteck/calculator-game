@@ -1,5 +1,5 @@
-<div class="game">
-  <div class="ui raised very padded text container segment">
+<form [formGroup]="gameForm" class="game" (ngSubmit)="onSubmit()">
+  <div class="ui very padded text game-container">
     <h2 class="ui header centered">Calculator Game</h2>
     <div class="ui three column grid">
       <div class="row sixteen wide centered">
@@ -9,26 +9,34 @@
         <div class="column">{{ firstNumber }}</div>
         <p class="operator">{{ operator }}</p>
         <div class="column">{{ secondNumber }}</div>
+        <p class="operator">=</p>
         <div sui-input>
-          <input type="number" placeholder="?" class="column" />
+          <input
+            type="text"
+            placeholder="?"
+            class="column"
+            formControlName="userAnswer"
+            required
+          />
         </div>
       </div>
       <div class="row">
-        <div class="column eight wide">
-          <button class="fluid ui primary button">Submit</button>
-        </div>
-        <div class="column eight wide">
-          <button class="fluid ui button">Next</button>
+        <div class="column sixteen wide">
+          <button class="fluid ui primary button" [disabled]="gameForm.invalid">
+            Submit
+          </button>
         </div>
       </div>
-      <div sui-buttons class="row">
-        <div sui-message>Cancel</div>
-        <div sui-message suiEmphasis="positive">Save</div>
-      </div>
-      <div class="row">
-        <div sui-message class="column eight wide">correct</div>
-        <div sui-message class="column eight wide">Wrong</div>
+      <div class="column sixteen wide result">
+        <div class="row">
+          <div sui-message class="column">Cancel</div>
+          <div sui-message class="column">Save</div>
+        </div>
+        <div class="row">
+          <div sui-message class="column">{{ correctAttempts }}</div>
+          <div sui-message class="column">{{ incorrectAttempts }}</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</form>
