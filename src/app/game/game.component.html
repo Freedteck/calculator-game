@@ -1,1 +1,34 @@
-<p>game works!</p>
+<div class="game">
+  <div class="ui raised very padded text container segment">
+    <h2 class="ui header centered">Calculator Game</h2>
+    <div class="ui three column grid">
+      <div class="row sixteen wide centered">
+        Ready for a Simple Math game? Enjoy!
+      </div>
+      <div class="row quest">
+        <div class="column">{{ firstNumber }}</div>
+        <p class="operator">{{ operator }}</p>
+        <div class="column">{{ secondNumber }}</div>
+        <div sui-input>
+          <input type="number" placeholder="?" class="column" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="column eight wide">
+          <button class="fluid ui primary button">Submit</button>
+        </div>
+        <div class="column eight wide">
+          <button class="fluid ui button">Next</button>
+        </div>
+      </div>
+      <div sui-buttons class="row">
+        <div sui-message>Cancel</div>
+        <div sui-message suiEmphasis="positive">Save</div>
+      </div>
+      <div class="row">
+        <div sui-message class="column eight wide">correct</div>
+        <div sui-message class="column eight wide">Wrong</div>
+      </div>
+    </div>
+  </div>
+</div>

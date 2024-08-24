@@ -1,0 +1,27 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+h2 {
+  margin-bottom: 20px;
+}
+.game .row.quest {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+.row.quest div,
+input {
+  background-color: #f0f0f0;
+  height: 100px;
+  max-width: 100px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: 600;
+  font-size: larger;
+}
